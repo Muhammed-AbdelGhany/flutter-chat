@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ThemeConfig {
-  static Color pColor = Colors.pink;
-  static Color bColor = Colors.pink;
-  static Color aColor = Colors.deepPurple;
-  static Brightness aColorBrighness = Brightness.dark;
-}
+const Color pColor = Colors.pink;
+const Color bColor = Colors.pink;
+const Color aColor = Colors.deepPurple;
+const Brightness aColorBrighness = Brightness.dark;
