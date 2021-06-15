@@ -15,31 +15,35 @@ class _AuthScreenState extends State<AuthScreen> {
   bool isLoading = false;
 
   void onSubmit(String email, String username, String password, bool isLogin,
-      BuildContext ctx) {
+      BuildContext ctx) async {
     setState(() {
       isLoading = true;
     });
     try {
-      String errorMsg =
-          Provider.of<AuthProvider>(context, listen: false).errorMsg;
       if (isLogin) {
-        Provider.of<AuthProvider>(context, listen: false)
+        await Provider.of<AuthProvider>(context, listen: false)
             .signInWithEmailAndPassword(email, password);
       } else {
-        Provider.of<AuthProvider>(context, listen: false)
+        await Provider.of<AuthProvider>(context, listen: false)
             .signUpWithEmailAndPassword(email, password, username);
       }
-      if (errorMsg != null) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text(errorMsg)));
-        setState(() {
-          isLoading = false;
-        });
-      }
-    } on FirebaseAuthException catch (e) {
+      // if (errorMsg != null) {
+      //   ScaffoldMessenger.of(context)
+      //       .showSnackBar(SnackBar(content: Text(errorMsg)));
+      //   setState(() {
+      //     isLoading = false;
+      //   });
+      // }
+    } on PlatformException catch (e) {
+      setState(() {
+        isLoading = false;
+      });
       print(e);
     } catch (e) {
       print(e);
+      setState(() {
+        isLoading = false;
+      });
     }
     setState(() {
       isLoading = false;

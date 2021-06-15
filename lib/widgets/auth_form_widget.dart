@@ -1,3 +1,4 @@
+import 'package:chat_app/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 
 class AuthForm extends StatefulWidget {
@@ -5,7 +6,10 @@ class AuthForm extends StatefulWidget {
       BuildContext context) submitFn;
   final bool isLoading;
 
-  AuthForm(this.submitFn, this.isLoading);
+  AuthForm(
+    this.submitFn,
+    this.isLoading,
+  );
   @override
   _AuthFormState createState() => _AuthFormState();
 }
